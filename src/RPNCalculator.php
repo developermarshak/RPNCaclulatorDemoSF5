@@ -4,6 +4,7 @@ namespace App;
 
 
 use App\Contract\CalculatorValuesStackInterface;
+use App\Contract\InputDataParserInterface;
 use App\Contract\OneStepCalculatorInterface;
 use App\Contract\OperatorCollectionInterface;
 use App\Contract\RPNCalculatorInterface;
@@ -21,20 +22,24 @@ class RPNCalculator implements RPNCalculatorInterface
 
     protected $inputStringsStack;
 
+    protected $inputDataParser;
+
     function __construct(
         OperatorCollectionInterface $operatorCollection,
         ValueValidatorInterface $valueValidator,
-        OneStepCalculatorInterface $oneStepCalculator
+        OneStepCalculatorInterface $oneStepCalculator,
+        InputDataParserInterface $inputDataParser
     )
     {
         $this->operatorCollection = $operatorCollection;
         $this->valueValidator = $valueValidator;
         $this->oneStepCalculator = $oneStepCalculator;
+        $this->inputDataParser = $inputDataParser;
     }
 
     function enter($inputData, CalculatorValuesStackInterface $inputStringsStack): string
     {
-        $parsedInput = $this->parseInput($inputData);
+        $parsedInput = $this->inputDataParser->parse($inputData);
 
         foreach ($parsedInput as $inputValue) {
             if ($this->operatorCollection->existOperator($inputValue)) {
@@ -58,17 +63,5 @@ class RPNCalculator implements RPNCalculatorInterface
         $result = $this->oneStepCalculator->calculate($first, $second, $operatorKey);
 
         $inputStringsStack->addResult($result);
-    }
-
-    protected function parseInput($inputData) : array {
-        if (empty($inputData)) {
-           return [];
-        }
-
-        $inputArray = explode(' ', $inputData);
-
-        return array_filter($inputArray, function ($value) {
-            return !empty($value);
-        });
     }
 }
