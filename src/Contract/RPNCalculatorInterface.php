@@ -5,5 +5,5 @@ namespace App\Contract;
 
 interface RPNCalculatorInterface
 {
-    function enter(string $inputString, CalculatorValuesStackInterface $inputStringsStack) : string;
+    function enter($inputString, CalculatorValuesStackInterface $inputStringsStack) : string;
 }
