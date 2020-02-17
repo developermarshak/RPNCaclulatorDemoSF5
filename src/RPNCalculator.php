@@ -2,7 +2,6 @@
 
 namespace App;
 
-
 use App\Contract\CalculatorValuesStackInterface;
 use App\Contract\InputDataParserInterface;
 use App\Contract\OneStepCalculatorInterface;
@@ -12,18 +11,34 @@ use App\Contract\ValueValidatorInterface;
 
 class RPNCalculator implements RPNCalculatorInterface
 {
-    protected $stack = [];
-
+    /**
+     * @var OperatorCollectionInterface
+     */
     protected $operatorCollection;
 
+    /**
+     * @var ValueValidatorInterface
+     */
     protected $valueValidator;
 
+    /**
+     * @var OneStepCalculatorInterface
+     */
     protected $oneStepCalculator;
 
-    protected $inputStringsStack;
-
+    /**
+     * @var InputDataParserInterface
+     */
     protected $inputDataParser;
 
+    /**
+     * RPNCalculator constructor.
+     *
+     * @param OperatorCollectionInterface $operatorCollection
+     * @param ValueValidatorInterface $valueValidator
+     * @param OneStepCalculatorInterface $oneStepCalculator
+     * @param InputDataParserInterface $inputDataParser
+     */
     function __construct(
         OperatorCollectionInterface $operatorCollection,
         ValueValidatorInterface $valueValidator,
@@ -37,7 +52,10 @@ class RPNCalculator implements RPNCalculatorInterface
         $this->inputDataParser = $inputDataParser;
     }
 
-    function enter($inputData, CalculatorValuesStackInterface $inputStringsStack): string
+    /**
+     * @inheritDoc
+     */
+    function calculate($inputData, CalculatorValuesStackInterface $inputStringsStack): string
     {
         $parsedInput = $this->inputDataParser->parse($inputData);
 
@@ -53,6 +71,12 @@ class RPNCalculator implements RPNCalculatorInterface
         return $inputStringsStack->getCurrentResult();
     }
 
+    /**
+     * Process result for case when input string is operator.
+     *
+     * @param string|null                    $operatorKey
+     * @param CalculatorValuesStackInterface $inputStringsStack
+     */
     protected function processOperatorKey($operatorKey, CalculatorValuesStackInterface $inputStringsStack) {
         if (!$inputStringsStack->isReadyPair()) {
             return;
