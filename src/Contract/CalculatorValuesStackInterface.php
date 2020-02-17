@@ -22,12 +22,6 @@ namespace App\Contract;
 
 //0.625
 
-/**
- * Should be remove
- *
- * Interface InputStringsStack
- * @package App
- */
 interface CalculatorValuesStackInterface
 {
     /**
@@ -39,19 +33,28 @@ interface CalculatorValuesStackInterface
     function addValue(string $value) : void;
 
     /**
+     * Check existing minimum 2 values for make some operation
+     *
      * @return bool
      */
     function isReadyPair() : bool;
 
+    /**
+     * Return swapped last 2 values from stack
+     *
+     * @return array
+     */
     function getPair() : array;
 
     /**
+     * Remove last pair from stack and add result to stack
+     *
      * @param string $string
      */
     function addResult(string $string) : void;
 
     /**
-     * Get current calculated result or last value
+     * Get current result (last value)
      *
      * @return string
      */

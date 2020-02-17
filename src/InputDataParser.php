@@ -7,6 +7,9 @@ use App\Contract\InputDataParserInterface;
 
 class InputDataParser implements InputDataParserInterface
 {
+    /**
+     * @inheritDoc
+     */
     function parse($inputData): array
     {
         if (empty($inputData)) {
@@ -15,9 +18,15 @@ class InputDataParser implements InputDataParserInterface
 
         $inputArray = explode(' ', $inputData);
 
-        return array_filter($inputArray, function ($value) {
+        $preparedInputValues = array_map(function ($value) {
+            return trim($value);
+        },$inputArray);
+
+        $filteredValues = array_filter($preparedInputValues, function ($value) {
             return !empty($value);
         });
+
+        return array_values($filteredValues);
     }
 
 }
