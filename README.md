@@ -46,5 +46,9 @@ You should only re-implementing some contract, make test for it (and use current
 
 P.S.
 --
-I don't realized tests for all classes.
+1. I don't realized tests for all classes.
 I hope current test cases, should be enough for understand my skill. 
+
+2. I really don't sure in `ValueValidator` class, maybe it should be responsibility of OneStepCalculator, but this thing don't like me too.
+
+3. I understand that injected operators to operators collection should be in loading by settings in services.yml, but I can't fast find a solution how do it.
