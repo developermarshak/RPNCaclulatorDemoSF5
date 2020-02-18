@@ -35,17 +35,16 @@ class RPNCalculator implements RPNCalculatorInterface
      * RPNCalculator constructor.
      *
      * @param OperatorCollectionInterface $operatorCollection
-     * @param ValueValidatorInterface $valueValidator
-     * @param OneStepCalculatorInterface $oneStepCalculator
-     * @param InputDataParserInterface $inputDataParser
+     * @param ValueValidatorInterface     $valueValidator
+     * @param OneStepCalculatorInterface  $oneStepCalculator
+     * @param InputDataParserInterface    $inputDataParser
      */
-    function __construct(
+    public function __construct(
         OperatorCollectionInterface $operatorCollection,
         ValueValidatorInterface $valueValidator,
         OneStepCalculatorInterface $oneStepCalculator,
         InputDataParserInterface $inputDataParser
-    )
-    {
+    ) {
         $this->operatorCollection = $operatorCollection;
         $this->valueValidator = $valueValidator;
         $this->oneStepCalculator = $oneStepCalculator;
@@ -55,7 +54,7 @@ class RPNCalculator implements RPNCalculatorInterface
     /**
      * @inheritDoc
      */
-    function calculate($inputData, CalculatorValuesStackInterface $inputStringsStack): string
+    public function calculate($inputData, CalculatorValuesStackInterface $inputStringsStack): string
     {
         $parsedInput = $this->inputDataParser->parse($inputData);
 
@@ -77,7 +76,8 @@ class RPNCalculator implements RPNCalculatorInterface
      * @param string|null                    $operatorKey
      * @param CalculatorValuesStackInterface $inputStringsStack
      */
-    protected function processOperatorKey($operatorKey, CalculatorValuesStackInterface $inputStringsStack) {
+    protected function processOperatorKey($operatorKey, CalculatorValuesStackInterface $inputStringsStack)
+    {
         if (!$inputStringsStack->isReadyPair()) {
             return;
         }

@@ -2,8 +2,7 @@
 
 namespace App\Contract;
 
-
 interface ValueValidatorInterface
 {
-    function validate(string $value);
+    public function validate(string $value);
 }

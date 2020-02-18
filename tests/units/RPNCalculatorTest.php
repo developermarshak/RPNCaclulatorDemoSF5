@@ -111,7 +111,7 @@ class RPNCalculatorTest extends \PHPUnit\Framework\TestCase
 
         $stack->expects($this->once())
             ->method('getPair')
-            ->willReturn(['2', '1']);
+            ->willReturn(['1', '2']);
 
         $stack->expects($this->once())
             ->method('getCurrentResult')
@@ -121,7 +121,7 @@ class RPNCalculatorTest extends \PHPUnit\Framework\TestCase
 
         $oneStepCalc->expects($this->once())
             ->method('calculate')
-            ->with('2', '1', '+')
+            ->with('1', '2', '+')
             ->willReturn('3');
 
         $calculator = new RPNCalculator(

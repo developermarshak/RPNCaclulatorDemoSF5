@@ -2,7 +2,6 @@
 
 namespace App\Contract;
 
-
 interface OperatorInterface
 {
     /**
@@ -11,14 +10,14 @@ interface OperatorInterface
      *
      * @return string
      */
-    function getOperatorKey(): string;
+    public function getOperatorKey(): string;
 
     /**
      * Calculate first and second value by this operator
      *
-     * @param $firstValue
-     * @param $secondValue
+     * @param  $firstValue
+     * @param  $secondValue
      * @return string
      */
-    function calculate($firstValue, $secondValue) : string;
+    public function calculate($firstValue, $secondValue) : string;
 }

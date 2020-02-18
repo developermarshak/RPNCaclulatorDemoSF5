@@ -1,10 +1,13 @@
 <?php
 namespace App;
 
-
 use App\Contract\OperatorCollectionInterface;
 use App\Contract\OperatorInterface;
 
+/**
+ * Class OperatorCollection
+ * @package App
+ */
 class OperatorCollection implements OperatorCollectionInterface
 {
     /**
@@ -17,17 +20,17 @@ class OperatorCollection implements OperatorCollectionInterface
     /**
      * @inheritDoc
      */
-    function existOperator(string $operatorKey): bool
+    public function existOperator(string $operatorKey): bool
     {
-        return isset( $this->operators[$operatorKey] );
+        return isset($this->operators[$operatorKey]);
     }
 
     /**
      * @inheritDoc
      */
-    function getOperatorImplementation(string $operatorKey): OperatorInterface
+    public function getOperatorImplementation(string $operatorKey): OperatorInterface
     {
-       return $this->operators[$operatorKey];
+        return $this->operators[$operatorKey];
     }
 
     /**
@@ -35,7 +38,8 @@ class OperatorCollection implements OperatorCollectionInterface
      *
      * @param OperatorInterface $operator
      */
-    function addOperator(OperatorInterface $operator){
+    public function addOperator(OperatorInterface $operator)
+    {
         $operatorKey = $operator->getOperatorKey();
 
         if (empty($operatorKey)) {

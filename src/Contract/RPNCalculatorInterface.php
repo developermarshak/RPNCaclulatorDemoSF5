@@ -2,7 +2,6 @@
 
 namespace App\Contract;
 
-
 use App\Exception\ValidationException;
 
 interface RPNCalculatorInterface
@@ -16,7 +15,6 @@ interface RPNCalculatorInterface
      *  - If last input is value
      * In other cases return result or throw validation error.
      *
-     *
      * @param string|null                    $inputString
      * @param CalculatorValuesStackInterface $inputStringsStack
      *
@@ -24,5 +22,5 @@ interface RPNCalculatorInterface
      *
      * @throws ValidationException
      */
-    function calculate($inputString, CalculatorValuesStackInterface $inputStringsStack) : string;
+    public function calculate($inputString, CalculatorValuesStackInterface $inputStringsStack) : string;
 }

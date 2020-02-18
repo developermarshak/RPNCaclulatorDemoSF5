@@ -1,7 +1,6 @@
 <?php
 namespace App\Operators;
 
-
 use App\Contract\OperatorInterface;
 use App\Exception\ValidationException;
 
@@ -10,7 +9,7 @@ class MultiplyOperator implements OperatorInterface
     /**
      * @inheritDoc
      */
-    function getOperatorKey(): string
+    public function getOperatorKey(): string
     {
         return '*';
     }

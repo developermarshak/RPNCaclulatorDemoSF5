@@ -2,7 +2,6 @@
 
 namespace App\Contract;
 
-
 interface CalculatorValuesStackBuilderInterface
 {
     /**
@@ -10,5 +9,5 @@ interface CalculatorValuesStackBuilderInterface
      *
      * @return CalculatorValuesStackInterface
      */
-    function makeValuesStack() : CalculatorValuesStackInterface;
+    public function makeValuesStack() : CalculatorValuesStackInterface;
 }
