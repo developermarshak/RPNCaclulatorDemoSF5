@@ -1,0 +1,8 @@
+#!/usr/bin/env php
+<?php
+
+list($application, $container) = require('./bootstrap.php');
+/** @var Symfony\Component\Console\Application  $application */
+
+$application->run();
+

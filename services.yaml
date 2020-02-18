@@ -1,0 +1,42 @@
+services:
+  _defaults:
+    autowire: true      # Automatically injects dependencies in your services.
+    autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+    public: true
+
+  App\:
+    resource: './src/*'
+
+  App\Contract\CalculatorValuesStackBuilderInterface:
+    class: App\CalculatorValuesStackInteractiveBuilder
+
+  App\Contract\OneStepCalculatorInterface:
+    class: App\OneStepCalculator
+
+  App\Operators\MultiplyOperator:
+    class: App\Operators\MultiplyOperator
+    tags: [app.operator]
+
+  App\Operators\DivideOperator:
+    class: App\Operators\DivideOperator
+    tags: [app.operator]
+
+  App\Operators\MinusOperator:
+    class: App\Operators\MinusOperator
+    tags: [app.operator]
+
+  App\Operators\PlusOperator:
+    class: App\Operators\PlusOperator
+    tags: [app.operator]
+
+  App\Contract\OperatorCollectionInterface:
+    class: App\OperatorCollection
+
+  App\Contract\RPNCalculatorInterface:
+    class: App\RPNCalculator
+
+  App\Contract\ValueValidatorInterface:
+    class: App\ValueValidator
+
+  App\Command\CalcCommand:
+    class: App\Command\CalcCommand
